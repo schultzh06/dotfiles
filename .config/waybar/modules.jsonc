@@ -1,0 +1,126 @@
+// Shared bar layout + module settings, included per-output by config.jsonc.
+// "output", "custom/window", and "custom/ws1".."custom/ws10" all need the
+// output name (and, for the workspace buttons, a per-id on-click), so
+// those stay out of this file and live directly in config.jsonc instead.
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "spacing": 0,
+    "margin-top":0,
+    "margin-left":0,
+    "margin-right":0,
+    "margin-bottom": 0,
+
+    "modules-left": [
+        "custom/ws1",
+        "custom/ws2",
+        "custom/ws3",
+        "custom/ws4",
+        "custom/ws5",
+        "custom/ws6",
+        "custom/ws7",
+        "custom/ws8",
+        "custom/ws9",
+        "custom/ws10",
+        "custom/window",
+        "tray"
+    ],
+
+    "modules-center": [
+        "clock#time"
+    ],
+
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "pulseaudio",
+        "network",
+        "battery",
+        "clock#date"
+    ],
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 8
+    },
+
+    "cpu": {
+        "format": "\uf2db  {usage}%",
+        "interval": 5,
+        "tooltip": true
+    },
+
+    "memory": {
+        "format": "\uf1c0  {percentage}%",
+        "interval": 5,
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
+
+    "temperature": {
+        "critical-threshold": 85,
+        "format": "\uf2c9  {temperatureC}\u00b0",
+        "interval": 5
+    },
+
+    "backlight": {
+        "format": "\uf185  {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "\uf026  muted",
+        "format-icons": {
+            "headphone": "\uf025",
+            "headset": "\uf025",
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+
+    "network": {
+        "format-wifi": "\uf1eb {essid}",
+        "format-ethernet": "\udb83\udc9d Ethernet",
+        "format-disconnected": "\uf071 offline",
+        "tooltip-format": "{ifname} — {ipaddr}",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "\uf0e7  {capacity}%",
+        "format-plugged": "\uf1e6  {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "tooltip-format": "{timeTo}"
+    },
+
+    "clock#time": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "today": "<b>{}</b>"
+            }
+        }
+    },
+
+    "clock#date": {
+        "format": "{:%a %b %d}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "today": "<b>{}</b>"
+            }
+        }
+    }
+}

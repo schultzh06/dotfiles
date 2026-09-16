@@ -1,0 +1,33 @@
+# Catppuccin Mocha, matching waybar/hyprlock (~/.config/waybar/style.css, hyprland.lua)
+
+sort=-time
+layer=top
+anchor=top-right
+outer-margin=10
+margin=10
+
+width=340
+padding=10,14
+border-size=2
+border-radius=5
+
+background-color=#1e1e2ed9
+text-color=#cdd6f4
+border-color=#b4befe
+
+font=Inter 11
+default-timeout=6000
+ignore-timeout=false
+
+[urgency=low]
+border-color=#585b70
+text-color=#a6adc8
+default-timeout=4000
+
+[urgency=normal]
+border-color=#b4befe
+
+[urgency=critical]
+border-color=#f38ba8
+text-color=#f38ba8
+default-timeout=0

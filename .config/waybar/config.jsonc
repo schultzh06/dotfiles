@@ -1,0 +1,141 @@
+// One bar per output so each screen tracks its own window title.
+// Shared settings live in modules.jsonc; only "output", "custom/window"
+// (needs the output name passed in), and the "custom/ws1".."custom/ws10"
+// workspace buttons (also need the output name, plus a fixed on-click per
+// workspace id) differ per entry below.
+//
+// custom/ws1..10 replace the native hyprland/workspaces module. That
+// module's click handler is hardcoded in waybar's C++ to send Hyprland's
+// plain-text dispatch IPC command ("workspace 3"), which this Hyprland
+// build (native Lua config) no longer accepts from external clients —
+// every dispatch call now gets routed through a Lua evaluator expecting
+// `hl.dsp.*` call syntax. There's no config option to override just the
+// click on that module, so scripts/workspace-button.sh reimplements the
+// same display behavior (show only workspaces that exist, highlight the
+// active one, scoped per output) and on-click instead runs the confirmed-
+// working `hyprctl dispatch 'hl.dsp.focus({ workspace = N })'` form
+// (same call hyprland.lua's own numbered keybinds use).
+[
+    {
+        "output": "eDP-1",
+        "include": ["/home/schultzh/.config/waybar/modules.jsonc"],
+
+        "custom/window": {
+            "exec": "/home/schultzh/.config/waybar/scripts/window-title.sh eDP-1",
+            "return-type": "json",
+            "escape": true
+        },
+
+        "custom/ws1": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 1",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+        },
+        "custom/ws2": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 2",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+        },
+        "custom/ws3": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 3",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+        },
+        "custom/ws4": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 4",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+        },
+        "custom/ws5": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 5",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
+        },
+        "custom/ws6": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 6",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'"
+        },
+        "custom/ws7": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 7",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 7 })'"
+        },
+        "custom/ws8": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 8",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 8 })'"
+        },
+        "custom/ws9": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 9",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 9 })'"
+        },
+        "custom/ws10": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh eDP-1 10",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 10 })'"
+        }
+    },
+    {
+        "output": "DP-2",
+        "include": ["/home/schultzh/.config/waybar/modules.jsonc"],
+
+        "custom/window": {
+            "exec": "/home/schultzh/.config/waybar/scripts/window-title.sh DP-2",
+            "return-type": "json",
+            "escape": true
+        },
+
+        "custom/ws1": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 1",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+        },
+        "custom/ws2": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 2",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+        },
+        "custom/ws3": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 3",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+        },
+        "custom/ws4": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 4",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+        },
+        "custom/ws5": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 5",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
+        },
+        "custom/ws6": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 6",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'"
+        },
+        "custom/ws7": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 7",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 7 })'"
+        },
+        "custom/ws8": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 8",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 8 })'"
+        },
+        "custom/ws9": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 9",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 9 })'"
+        },
+        "custom/ws10": {
+            "exec": "/home/schultzh/.config/waybar/scripts/workspace-button.sh DP-2 10",
+            "return-type": "json",
+            "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 10 })'"
+        }
+    }
+]

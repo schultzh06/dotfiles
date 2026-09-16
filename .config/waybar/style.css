@@ -1,0 +1,217 @@
+/* Catppuccin Mocha menu bar for Waybar
+   ~/.config/waybar/style.css
+   Matches hyprland.lua: gaps_out 10, rounding 5/power 2, lavender->blue border */
+
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+@define-color overlay0 #6c7086;
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+@define-color text     #cdd6f4;
+@define-color lavender #b4befe;
+@define-color blue     #89b4fa;
+@define-color teal     #94e2d5;
+@define-color green    #a6e3a1;
+@define-color yellow   #f9e2af;
+@define-color peach    #fab387;
+@define-color red      #f38ba8;
+@define-color mauve    #cba6f7;
+
+* {
+    font-family: "Inter", "Symbols Nerd Font", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
+}
+
+/* Floating rounded pill, offset from the screen edges (matches gaps_out: 10).
+   Lavender border matches hyprland.lua's active_border, same on both bars —
+   dynamically dimming the unfocused monitor's border was tried, but doing
+   it live required forcing a full waybar reload on every focus change
+   (waybar's passive CSS file-watching never picked up any version of the
+   change on its own), which was disruptive enough to not be worth it. */
+window#waybar {
+    background: rgba(30, 30, 46, 0.4);
+    color: @text;
+    border-radius: 0px;
+    border-bottom: 1.5px solid alpha(@lavender, 0.3);
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+}
+.modules-left {
+    margin-left: 8px;
+}
+
+/* ---- Left: workspaces ----
+   scripts/workspace-button.sh drives custom/ws1..ws10 (see config.jsonc):
+   hyprland/workspaces' click is hardcoded to a dispatch call this Hyprland
+   build (native Lua config) rejects from external clients, so these
+   reimplement the same look with a click that actually works. Buttons for
+   workspaces that don't currently exist collapse to zero width. */
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5,
+#custom-ws6, #custom-ws7, #custom-ws8, #custom-ws9, #custom-ws10 {
+    padding: 0 9px;
+    color: @overlay0;
+    background: transparent;
+    border-radius: 8px;
+    margin: 4px 6px;
+    transition: background 0.2s ease, color 0.2s ease, padding 0.2s ease,
+        margin 0.2s ease, min-width 0.2s ease;
+}
+#custom-ws1.active, #custom-ws2.active, #custom-ws3.active, #custom-ws4.active,
+#custom-ws5.active, #custom-ws6.active, #custom-ws7.active, #custom-ws8.active,
+#custom-ws9.active, #custom-ws10.active {
+    color: @base;
+    background: @lavender;
+    box-shadow: 0 0 3px alpha(@lavender, 0.45);
+}
+#custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover, #custom-ws4:hover,
+#custom-ws5:hover, #custom-ws6:hover, #custom-ws7:hover, #custom-ws8:hover,
+#custom-ws9:hover, #custom-ws10:hover {
+    background: alpha(@surface0, 0.8);
+    color: @text;
+}
+#custom-ws1.empty, #custom-ws2.empty, #custom-ws3.empty, #custom-ws4.empty,
+#custom-ws5.empty, #custom-ws6.empty, #custom-ws7.empty, #custom-ws8.empty,
+#custom-ws9.empty, #custom-ws10.empty {
+    padding: 0;
+    margin: 0;
+    min-width: 0px;
+    background: transparent;
+}
+
+/* ---- Center: focused window ----
+   Small, equal padding on both sides (GTK ignores text-align, so left/right
+   inset is the only lever that's always symmetric regardless of content).
+   Each width tier nudges both sides together by the same modest amount, so
+   the pill still eases in/out on title changes without a lopsided gap. */
+#custom-window {
+    font-weight: 600;
+    color: @subtext1;
+    padding: 0px 10px;
+    margin: 4px 0;
+    background: alpha(@surface0, 0.55);
+    border-radius: 8px;
+    min-height: 12px;
+    min-width: 34px;
+    transition: padding 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+#custom-window.empty {
+    min-width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background: transparent;
+}
+#custom-window.w1  { padding: 2px 10px; }
+#custom-window.w2  { padding: 2px 11px; }
+#custom-window.w3  { padding: 2px 12px; }
+#custom-window.w4  { padding: 2px 13px; }
+#custom-window.w5  { padding: 2px 14px; }
+#custom-window.w6  { padding: 2px 15px; }
+#custom-window.w7  { padding: 2px 16px; }
+#custom-window.w8  { padding: 2px 17px; }
+#custom-window.w9  { padding: 2px 18px; }
+#custom-window.w10 { padding: 2px 19px; }
+#custom-window.w11 { padding: 2px 20px; }
+#custom-window.w12 { padding: 2px 21px; }
+#custom-window.w13 { padding: 2px 22px; }
+#custom-window.w14 { padding: 2px 23px; }
+
+/* ---- Right: status items ---- */
+#pulseaudio,
+#backlight,
+#network,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#clock,
+#tray {
+    color: @subtext1;
+    padding: 0 9px;
+    margin: 4px 1px;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#clock {
+    font-family: "Inter", "Symbols Nerd Font", sans-serif;
+    font-weight: 500;
+    font-feature-settings: "tnum";
+    color: @text;
+}
+#clock.time {
+    font-weight: 600;
+    color: @text;
+}
+#clock.date {
+    padding: 0 12px 0 9px;
+    margin-right: 4px;
+}
+
+#tray {
+    padding: 0 8px;
+    margin-left: 4px;
+}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+/* Status colors — used sparingly */
+#battery.charging {
+    color: @green;
+}
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+#battery.critical:not(.charging) {
+    color: @red;
+}
+#network.disconnected {
+    color: @red;
+}
+#pulseaudio.muted {
+    color: @overlay0;
+}
+#temperature.critical {
+    color: @peach;
+}
+
+/* Hover feedback — soft pill highlight, macOS control-center style */
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#backlight:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover {
+    background: alpha(@surface0, 0.8);
+    color: @text;
+}
+
+/* Tooltips */
+tooltip {
+    background: @mantle;
+    border: 1px solid alpha(@lavender, 0.35);
+    border-radius: 10px;
+}
+tooltip label {
+    color: @text;
+    padding: 4px;
+}

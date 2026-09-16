@@ -1,0 +1,160 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = 'catppuccin_mocha'
+
+format = """
+[┌─](lavender)\
+[](lavender)\
+$os\
+$username\
+[](bg:mauve fg:lavender)\
+$directory\
+[](bg:flamingo fg:mauve)\
+$git_branch\
+$git_status\
+[](fg:flamingo bg:rosewater)\
+$c\
+$rust\
+$golang\
+$nodejs\
+$bun\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$conda\
+[](fg:rosewater bg:surface1)\
+$time\
+[](fg:surface1)\
+$cmd_duration\
+$line_break\
+[└─](lavender)\
+$character"""
+
+[os]
+disabled = false
+style = "bg:lavender fg:crust"
+
+[os.symbols]
+Arch = "󰣇"
+Linux = "󰌛"
+
+[username]
+show_always = true
+style_user = "bg:lavender fg:crust"
+style_root = "bg:lavender fg:crust"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:mauve fg:crust"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+style = "bg:flamingo"
+format = '[[ $symbol $branch ](fg:crust bg:flamingo)]($style)'
+
+[git_status]
+style = "bg:flamingo"
+format = '[[($all_status$ahead_behind )](fg:crust bg:flamingo)]($style)'
+
+[c]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[rust]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[golang]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[nodejs]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[bun]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[php]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[java]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[kotlin]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[haskell]
+style = "bg:rosewater"
+format = '[[ $symbol( $version) ](fg:crust bg:rosewater)]($style)'
+
+[python]
+style = "bg:rosewater"
+format = '[[ $symbol( $version)(\($virtualenv\)) ](fg:crust bg:rosewater)]($style)'
+
+[conda]
+style = "bg:rosewater"
+format = '[[ $symbol$environment ](fg:crust bg:rosewater)]($style)'
+ignore_base = false
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:surface1"
+format = '[[ $time ](fg:lavender bg:surface1)]($style)'
+
+[cmd_duration]
+disabled = false
+show_milliseconds = true
+format = '[ took $duration]($style)'
+style = "fg:overlay1"
+show_notifications = false
+min_time_to_notify = 45000
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:lavender)'
+error_symbol = '[❯](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:lavender)'
+vimcmd_replace_one_symbol = '[❮](bold fg:mauve)'
+vimcmd_replace_symbol = '[❮](bold fg:mauve)'
+vimcmd_visual_symbol = '[❮](bold fg:green)'
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

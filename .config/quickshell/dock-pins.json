@@ -1,0 +1,1 @@
+[{"id":"kitty"},{"id":"brave-browser"},{"id":"code"},{"id":"com.anthropic.Claude"},{"id":"yazi","matchClass":"yazi-float","name":"Yazi","icon":"system-file-manager","exec":["kitty","--class","yazi-float","-e","yazi"],"alwaysNew":true},{"id":"obsidian"},{"id":"spotify"},{"id":"libreoffice-writer"},{"id":"slack"}]

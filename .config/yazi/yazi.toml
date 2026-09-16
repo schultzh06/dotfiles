@@ -1,0 +1,20 @@
+[opener]
+edit = [
+    { run = "nvim %s", block = true, for = "unix" },
+]
+imv = [
+    { run = 'imv %s', desc = "Open with imv", orphan = true },
+]
+mpv = [
+    { run = 'mpv %s', desc = "Open with mpv", orphan = true },
+]
+
+[open]
+rules = [
+    { mime = "image/*", use = "imv" },
+    { mime = "video/*", use = "mpv" },
+    { mime = "audio/*", use = "mpv" },
+    { mime = "inode/x-empty", use = "edit" },
+    { mime = "text/*", use = "edit" },
+    { mime = "*", use = "edit" },
+]

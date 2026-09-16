@@ -1,0 +1,8 @@
+singleton Theme 1.0 Theme.qml
+singleton SysStats 1.0 SysStats.qml
+singleton DockPins 1.0 DockPins.qml
+singleton MediaState 1.0 MediaState.qml
+singleton ExpoState 1.0 ExpoState.qml
+Bar 1.0 Bar.qml
+Dock 1.0 Dock.qml
+Expo 1.0 Expo.qml
