@@ -13,15 +13,38 @@ Item {
     // strip below stays click-through for whatever's underneath.
     height: Theme.barHeight
 
+    // Same ring trick as the dock's border (Dock.qml's dockBorderGlow +
+    // inset fill): an outer rect filled with the horizontal accent fade,
+    // covered by an inset rect of the bar's normal fill, leaving a
+    // border.width-wide traced line around the bar instead of a single
+    // flat line. Keeps the bar and dock reading as one matching style
+    // rather than the bar's old edge-to-edge line, which stretched the
+    // same gradient across the full screen width and washed it out.
+    //
+    // Unlike the dock (a floating pill that never touches the screen
+    // edges, and always rounded), the bar is edge-to-edge -- so this
+    // only insets top/bottom, not left/right. The gradient's horizontal
+    // orientation goes fully transparent at position 0.0/1.0, i.e. at
+    // x=0 and x=width; insetting all four sides like the dock does would
+    // put a fully-transparent 2px-wide strip the full height of the bar
+    // exactly at the true screen edges (not just the corners), showing
+    // the desktop through a visible gap along both sides.
     Rectangle {
+        id: barBorderGlow
         anchors.fill: parent
-        color: Theme.alpha(Theme.base, 0.3)
+        gradient: Gradient {
+            orientation: Gradient.Horizontal
+            GradientStop { position: 0.0; color: Theme.alpha(Theme.accent, 0.0) }
+            GradientStop { position: 0.5; color: Theme.alpha(Theme.accent, 0.38) }
+            GradientStop { position: 1.0; color: Theme.alpha(Theme.accent, 0.0) }
+        }
     }
 
     Rectangle {
-        anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-        height: 1.5
-        color: Theme.alpha(Theme.lavender, 0.3)
+        anchors.fill: barBorderGlow
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+        color: Theme.alpha(Theme.base, 0.3)
     }
 
     RowLayout {

@@ -3,12 +3,12 @@
   "logo": {
     "color": {
       "1": "#89b4fa",
-      "2": "#b4befe"
+      "2": "#f5e0dc"
     }
   },
   "display": {
     "color": {
-      "keys": "#b4befe",
+      "keys": "#f5e0dc",
       "title": "#cdd6f4",
       "output": "#cdd6f4",
       "separator": "#585b70"

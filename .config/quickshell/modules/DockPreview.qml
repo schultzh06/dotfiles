@@ -83,7 +83,7 @@ PopupWindow {
         radius: 10
         color: Theme.mantle
         border.width: 1
-        border.color: Theme.alpha(Theme.lavender, 0.35)
+        border.color: Theme.alpha(Theme.accent, 0.35)
 
         MouseArea {
             // Keeps the preview open while the cursor is on the popup
@@ -172,7 +172,7 @@ PopupWindow {
                         radius: 6
                         color: "transparent"
                         border.width: cardMouse.containsMouse ? 1 : 0
-                        border.color: Theme.lavender
+                        border.color: Theme.accent
                     }
 
                     MouseArea {

@@ -507,21 +507,31 @@ Item {
         Behavior on y { NumberAnimation { duration: Theme.animSlow; easing.type: Theme.easeOutExpo } }
         Behavior on opacity { NumberAnimation { duration: Theme.animMed } }
 
+        // Gradient "border": Rectangle.border.color can't be a gradient, so
+        // this is a ring trick -- an outer rounded rect filled with the same
+        // horizontal fade used for the bar's bottom edge (transparent ->
+        // accent -> transparent), with an inset rect of the dock's normal
+        // fill color drawn on top, leaving only a border.width-wide ring of
+        // the gradient visible around the edge.
         Rectangle {
-            /*
-            width: parent.width
-            height: parent.height * 0.0
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 9
-            */
+            id: dockBorderGlow
             anchors.fill: parent
             anchors.topMargin: 6
             anchors.bottomMargin: 6
             radius: Theme.radius + 8
+            gradient: Gradient {
+                orientation: Gradient.Horizontal
+                GradientStop { position: 0.0; color: Theme.alpha(Theme.accent, 0.0) }
+                GradientStop { position: 0.5; color: Theme.alpha(Theme.accent, 0.38) }
+                GradientStop { position: 1.0; color: Theme.alpha(Theme.accent, 0.0) }
+            }
+        }
+
+        Rectangle {
+            anchors.fill: dockBorderGlow
+            anchors.margins: 2
+            radius: Math.max(0, dockBorderGlow.radius - 2)
             color: Theme.alpha(Theme.base, 0.5)
-            border.width: 1
-            border.color: Theme.alpha(Theme.lavender, 0.3)
         }
 
         Row {

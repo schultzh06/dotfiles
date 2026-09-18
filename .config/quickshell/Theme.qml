@@ -22,6 +22,11 @@ QtObject {
     readonly property color peach: "#fab387"
     readonly property color red: "#f38ba8"
     readonly property color mauve: "#cba6f7"
+    readonly property color rosewater: "#f5e0dc"
+
+    // Single accent used throughout the bar/dock -- change this to switch
+    // the whole setup's accent color (e.g. lavender vs peach) in one place.
+    readonly property color accent: rosewater
 
     function alpha(c, a) {
         return Qt.rgba(c.r, c.g, c.b, a);

@@ -39,7 +39,7 @@ Item {
 
                 width: Theme.visualizerBarWidth
                 radius: width / 2
-                color: Theme.lavender
+                color: Theme.accent
                 anchors.verticalCenter: parent.verticalCenter
                 height: Math.max(width, Theme.mediaSquareSize * (level / 100))
 

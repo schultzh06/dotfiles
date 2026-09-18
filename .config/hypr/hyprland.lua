@@ -43,8 +43,8 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
-hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Rosewater")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Rosewater")
 hl.env("EDITOR", "nvim")
 hl.env("VISUAL", "nvim")
 
@@ -72,6 +72,44 @@ hl.env("VISUAL", "nvim")
 ---- LOOK AND FEEL ----
 -----------------------
 
+-- Reads Theme.qml's `accent` color so the active/inactive border color
+-- here doesn't have to be kept in sync by hand with the quickshell bar/dock
+-- accent -- see ~/.config/quickshell/Theme.qml. `accent` is usually a bare
+-- reference to one of the named palette colors (e.g. "accent: peach"), so
+-- this resolves that name to its hex; falls back to lavender if the file
+-- is missing or the format ever changes underneath this.
+local function read_quickshell_accent()
+    local path = os.getenv("HOME") .. "/.config/quickshell/Theme.qml"
+    local f = io.open(path, "r")
+    if not f then return nil end
+    local content = f:read("*a")
+    f:close()
+
+    local hex = content:match('property%s+color%s+accent%s*:%s*"#(%x+)"')
+    if hex then return hex end
+
+    local ref = content:match('property%s+color%s+accent%s*:%s*([%a][%w]*)')
+    if not ref then return nil end
+
+    return content:match('property%s+color%s+' .. ref .. '%s*:%s*"#(%x+)"')
+end
+
+-- Blends a hex color toward white by `amount` (0-1) -- used to make the
+-- border a bit lighter than the raw accent, same treatment as the
+-- Bibata-Modern-Rosewater cursor (also blended 40% toward white).
+local function lighten_hex(hex, amount)
+    local r = tonumber(hex:sub(1, 2), 16)
+    local g = tonumber(hex:sub(3, 4), 16)
+    local b = tonumber(hex:sub(5, 6), 16)
+    r = math.floor(r + (255 - r) * amount)
+    g = math.floor(g + (255 - g) * amount)
+    b = math.floor(b + (255 - b) * amount)
+    return string.format("%02x%02x%02x", r, g, b)
+end
+
+local accentHex = read_quickshell_accent() or "b4befe"
+local borderHex = lighten_hex(accentHex, 0.4)
+
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
@@ -81,8 +119,8 @@ hl.config({
         border_size = 2,
 
 	col = {
-    	    active_border   = { colors = {"rgba(b4befeee)", "rgba(b4befeee)"}, angle = 45 },
-    	    inactive_border = "rgba(b4befe4d)",
+    	    active_border   = { colors = {"rgba(" .. borderHex .. "4d)", "rgba(" .. borderHex .. "aa)", "rgba(" .. borderHex .. "4d)"}, angle = 45 },
+    	    inactive_border = "rgba(" .. borderHex .. "4d)",
 	},
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -100,7 +138,7 @@ hl.config({
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.9,
 
         dim_inactive = true,
         dim_strength = 0.06,

@@ -128,7 +128,7 @@ Item {
         radius: 4
         color: "transparent"
         border.width: mouse.containsMouse ? 2 : 1
-        border.color: mouse.containsMouse ? Theme.lavender : Theme.alpha(Theme.crust, 0.6)
+        border.color: mouse.containsMouse ? Theme.accent : Theme.alpha(Theme.crust, 0.6)
     }
 
     MouseArea {

@@ -46,7 +46,7 @@ Item {
             width: root.slotSize
             height: root.slotSize
             radius: Theme.radius - 2
-            color: Theme.lavender
+            color: Theme.accent
             opacity: root.activeId >= 1 && root.activeId <= 10 ? 1 : 0
             Behavior on x { SpringAnimation { spring: 3.2; damping: 0.42 } }
             Behavior on opacity { NumberAnimation { duration: Theme.animMed } }

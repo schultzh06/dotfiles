@@ -45,7 +45,7 @@ hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.4, bezier = "al
 
 -- ══ Borders ══════════════════════════════════════════════════════
 hl.animation({ leaf = "border",      enabled = true, speed = 6, bezier = "easeOutExpo" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "linear" })
+hl.animation({ leaf = "borderangle", enabled = false })
 
 -- Rotating gradient border. Forces a full-refresh-rate redraw forever:
 -- kills VRR, spins your fans, eats battery. Enable knowingly.

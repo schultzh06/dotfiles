@@ -87,7 +87,7 @@ Item {
             model: Math.min(root.toplevels.length, 3)
             Rectangle {
                 width: 4; height: 4; radius: 2
-                color: Theme.lavender
+                color: Theme.accent
             }
         }
     }

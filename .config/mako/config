@@ -13,7 +13,7 @@ border-radius=5
 
 background-color=#1e1e2ed9
 text-color=#cdd6f4
-border-color=#b4befe
+border-color=#f5e0dc
 
 font=Inter 11
 default-timeout=6000
@@ -25,7 +25,7 @@ text-color=#a6adc8
 default-timeout=4000
 
 [urgency=normal]
-border-color=#b4befe
+border-color=#f5e0dc
 
 [urgency=critical]
 border-color=#f38ba8

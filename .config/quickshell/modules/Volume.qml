@@ -68,7 +68,7 @@ Pill {
             anchors.bottom: parent.bottom
             width: parent.width
             radius: 1.5
-            color: root.muted ? Theme.overlay0 : Theme.lavender
+            color: root.muted ? Theme.overlay0 : Theme.accent
             height: parent.height * (root.muted ? 0 : root.pct / 100)
             Behavior on height { NumberAnimation { duration: Theme.animMed; easing.type: Theme.easeOutExpo } }
         }

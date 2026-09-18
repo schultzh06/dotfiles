@@ -277,7 +277,7 @@ Item {
                                 width: Math.min(cardLabel.implicitWidth + 20, card.width)
                                 height: 26
                                 radius: 13
-                                color: card.modelData.active ? Theme.lavender : Theme.alpha(Theme.surface0, 0.8)
+                                color: card.modelData.active ? Theme.accent : Theme.alpha(Theme.surface0, 0.8)
 
                                 Text {
                                     id: cardLabel
@@ -308,7 +308,7 @@ Item {
                                 radius: 10
                                 color: Theme.alpha(Theme.mantle, 0.85)
                                 border.width: card.modelData.active ? 2 : 1
-                                border.color: card.modelData.active ? Theme.lavender : Theme.alpha(Theme.subtext0, 0.25)
+                                border.color: card.modelData.active ? Theme.accent : Theme.alpha(Theme.subtext0, 0.25)
 
                                 // Click on the card's own background (not a
                                 // window) also jumps to that workspace --

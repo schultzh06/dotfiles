@@ -7,7 +7,7 @@
 
 window {
     background-color: rgba(30, 30, 46, 0.50);
-    border: 1.5px solid rgba(180, 190, 254, 0.75);
+    border: 1.5px solid rgba(245, 224, 220, 0.75);
     border-radius: 5px;
 }
 
@@ -48,5 +48,5 @@ window {
 }
 
 #entry:selected #text {
-    color: #b4befe;
+    color: #f5e0dc;
 }

@@ -7,8 +7,8 @@ import "../"
 Canvas {
     id: root
     property var values: []
-    property color lineColor: Theme.lavender
-    property color fillColor: Theme.alpha(Theme.lavender, 0.25)
+    property color lineColor: Theme.accent
+    property color fillColor: Theme.alpha(Theme.accent, 0.25)
 
     property var _display: []
 

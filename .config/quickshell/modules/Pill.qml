@@ -89,7 +89,7 @@ Item {
         radius: 10
         color: Theme.mantle
         border.width: 1
-        border.color: Theme.alpha(Theme.lavender, 0.35)
+        border.color: Theme.alpha(Theme.accent, 0.35)
         anchors.top: parent.bottom
         anchors.topMargin: 6
         anchors.right: parent.right
